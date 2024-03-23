@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Serverless Example</title>
+</head>
+<body>
+    <h1>PHP Serverless Example</h1>
+    <form id="phpForm">
+        <button type="submit">Execute PHP Code</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('phpForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch('/hello.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('result').innerText = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerText = 'Error executing PHP';
+                });
+        });
+    </script>
+</body>
+</html>
